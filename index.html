@@ -4,374 +4,255 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
-  <meta name="description" content="Choose print and digital advertising placements across planned Ulster Unfolded town and county map editions." />
-  <link rel="icon" href="data:," />
-  <title>Choose an Ulster Unfolded advertising placement</title>
+  <meta name="description" content="Founding advertising placements on the Ulster Unfolded Kingston street map — a free print map plus mobile discovery, launching spring 2027." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23133B49'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' fill='%23F5EBDD' text-anchor='middle'%3EU%3C/text%3E%3C/svg%3E" />
+  <title>Advertise on the Kingston map · Ulster Unfolded</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3ynhPQ6Q6MZPSE9K9FQZcOyDHZB7U=" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,650&display=swap" rel="stylesheet">
   <style>
-    :root {
-      color-scheme: light dark;
-      --river:#2a6d7f;
-      --deep:#133b49;
-      --ridge:#355e3b;
-      --moss:#829676;
-      --paper:#f5ebdd;
-      --spring:#dce9d7;
-      --blossom:#e86f47;
-      --sun:#d7aa35;
-      --canvas:#fbf8f1;
-      --surface:#fffdf8;
-      --ink:#17201c;
-      --muted:#59635d;
-      --line:#c8c3b8;
-      --shade:rgba(19,59,73,.12);
-      --serif:"Newsreader", Georgia, serif;
-      --sans:"Archivo", Helvetica, sans-serif;
+    :root{
+      color-scheme:light dark;
+      --river:#2a6d7f; --deep:#133b49; --ridge:#355e3b; --moss:#829676;
+      --paper:#f5ebdd; --blossom:#e86f47; --sun:#d7aa35;
+      --canvas:#fbf8f1; --surface:#fffdf8; --ink:#17201c; --muted:#59635d; --line:#d9d2c2;
+      --serif:"Newsreader",Georgia,serif; --sans:"Archivo",Helvetica,Arial,sans-serif;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --river:#76b8c8;
-        --deep:#b5d9df;
-        --ridge:#98c39e;
-        --moss:#a9bda0;
-        --paper:#29322d;
-        --spring:#23372b;
-        --blossom:#ff8a62;
-        --sun:#e9be4e;
-        --canvas:#101713;
-        --surface:#18221d;
-        --ink:#f0f2e9;
-        --muted:#bac4bc;
-        --line:#435047;
-        --shade:rgba(0,0,0,.3);
-      }
+    @media (prefers-color-scheme:dark){
+      :root{ --canvas:#101713; --surface:#18221d; --ink:#f0f2e9; --muted:#aeb8b0; --line:#3c473f; }
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.5 var(--sans);overflow-x:hidden}
-    button,input{font:inherit;color:inherit}
+    body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.55 var(--sans);overflow-x:hidden;-webkit-text-size-adjust:100%}
+    img{max-width:100%}
+    button,input,select{font:inherit;color:inherit}
     button{cursor:pointer}
-    a{color:inherit}
-    :focus-visible{outline:3px solid var(--blossom);outline-offset:3px}
-    .shell{width:min(1220px,calc(100% - 24px));margin-inline:auto}
-    .topline{padding:16px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;color:var(--muted);font-size:.78rem}
-    .topline strong{color:var(--ridge);font-weight:800}
-    .topline a{font-weight:700;text-underline-offset:3px}
-    .hero{padding:44px 0 34px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-    .hero:after{content:"";position:absolute;right:-80px;bottom:-105px;width:250px;height:250px;border:34px solid var(--spring);border-radius:50%;opacity:.75;z-index:-1}
-    .hero-grid{display:grid;gap:28px}
-    .kicker{margin:0 0 14px;color:var(--river);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
-    h1,h2,h3{font-family:var(--serif);letter-spacing:-.035em}
-    h1{margin:0;max-width:850px;font-size:clamp(3.1rem,13vw,6.7rem);line-height:.86;font-weight:650}
-    h1 em{display:block;color:var(--blossom);font-style:normal;margin-left:.58em}
-    .hero-copy{margin:22px 0 0;max-width:700px;color:var(--muted);font-size:1.04rem}
-    .launch-ticket{background:var(--deep);color:var(--canvas);padding:22px;box-shadow:9px 9px 0 var(--sun);transform:rotate(1deg);max-width:520px}
-    @media(prefers-color-scheme:dark){.launch-ticket{color:#101713;background:#b5d9df}}
-    .launch-ticket small{display:block;font-weight:800;letter-spacing:.09em;text-transform:uppercase;opacity:.72}
-    .launch-ticket strong{display:block;margin-top:15px;font:600 2rem/1 var(--serif)}
-    .launch-ticket p{margin:12px 0 0;font-size:.78rem;opacity:.76}
+    :focus-visible{outline:3px solid var(--blossom);outline-offset:2px}
+    .shell{width:min(1060px,calc(100% - 32px));margin-inline:auto}
 
-    .edition-nav{position:static;z-index:50;background:color-mix(in srgb,var(--canvas) 95%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(12px);padding:10px 0}
-    .edition-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
-    .edition-btn{min-height:46px;border:1px solid var(--line);background:var(--surface);padding:8px 9px;border-radius:2px;text-align:left;font-size:.77rem;font-weight:800}
-    .edition-btn span{display:block;color:var(--muted);font-size:.63rem;font-weight:600}
-    .edition-btn[aria-pressed="true"]{background:var(--deep);color:var(--canvas);border-color:var(--deep)}
-    .edition-btn[aria-pressed="true"] span{color:color-mix(in srgb,var(--canvas) 75%,transparent)}
-    @media(prefers-color-scheme:dark){.edition-btn[aria-pressed="true"]{color:#101713}}
+    /* top line */
+    .topline{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:.8rem;color:var(--muted)}
+    .topline .brand{font-weight:800;color:var(--ink);letter-spacing:.02em}
+    .topline .brand b{color:var(--river)}
+    .topline a{font-weight:700;color:var(--river);text-underline-offset:3px}
 
-    main{padding:28px 0 120px}
-    .workspace-head{display:grid;gap:14px;margin-bottom:18px}
-    .workspace-head h2{margin:0;font-size:clamp(2.4rem,9vw,4.8rem);line-height:.93;font-weight:600}
-    .workspace-head p{margin:8px 0 0;max-width:660px;color:var(--muted)}
-    .edition-facts{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:var(--line);gap:1px}
-    .fact{padding:12px;background:var(--surface)}
-    .fact strong{display:block;font:600 1.22rem/1 var(--serif);color:var(--river)}
-    .fact span{display:block;margin-top:5px;color:var(--muted);font-size:.66rem}
+    /* hero */
+    .hero{padding:40px 0 8px}
+    .kicker{margin:0 0 12px;color:var(--river);font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    h1,h2,h3{font-family:var(--serif);letter-spacing:-.02em;line-height:1.04;margin:0}
+    h1{font-size:clamp(2.5rem,10.5vw,4.4rem);font-weight:650;max-width:16ch}
+    h1 em{font-style:normal;color:var(--blossom)}
+    .lede{margin:18px 0 0;max-width:60ch;color:var(--muted);font-size:1.02rem}
+    .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 0}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:12px 26px;border-radius:999px;font-weight:800;text-decoration:none;border:2px solid var(--ink)}
+    .btn.primary{background:var(--ink);color:var(--canvas)}
+    .btn.ghost{background:transparent;color:var(--ink)}
+    @media (prefers-color-scheme:dark){ .btn.primary{background:var(--ink);color:#101713;border-color:var(--ink)} }
 
-    .view-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
-    .view-tab{min-height:46px;border:1px solid var(--line);background:transparent;font-weight:800;border-radius:2px}
-    .view-tab[aria-pressed="true"]{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
-    .workgrid{display:grid;gap:16px}
-    .stage{position:relative;border:1px solid var(--line);background:var(--surface);min-width:0;box-shadow:0 20px 50px var(--shade)}
-    .map-frame{position:relative;min-height:520px}
-    #map{height:520px;width:100%;background:#e6eadf}
-    .map-note{position:absolute;z-index:700;left:10px;top:10px;max-width:230px;background:rgba(255,253,248,.95);color:#17201c;border:1px solid #c8c3b8;padding:8px 10px;font-size:.67rem;box-shadow:0 3px 12px rgba(0,0,0,.12)}
-    .map-note strong{display:block;color:#133b49}
-    .map-ad{position:absolute;z-index:650;min-width:78px;max-width:105px;border:2px solid #fff;background:#e86f47;color:white;padding:7px 8px;box-shadow:0 5px 15px rgba(0,0,0,.25);font-size:.64rem;font-weight:800;text-align:left}
-    .map-ad small{display:block;font-weight:600;opacity:.82}
-    .map-ad.selected{background:#133b49}
-    .ad-a1{top:76px;right:10px}.ad-a2{bottom:42px;left:10px}.ad-a3{bottom:42px;right:10px}.ad-a4{top:150px;right:10px}
-    .leaflet-control-attribution{font-size:9px!important}
-    .leaflet-container{font-family:var(--sans)}
-    .zone-marker{width:38px;height:38px;border:3px solid white;border-radius:50% 50% 50% 8px;background:#2a6d7f;color:#fff;transform:rotate(-45deg);box-shadow:0 4px 12px rgba(0,0,0,.28);display:grid;place-items:center}
-    .zone-marker span{transform:rotate(45deg);font-size:10px;font-weight:800}
-    .zone-marker.active{background:#e86f47}
-    .static-map{display:none;position:absolute;inset:0;overflow:hidden;background:#eee9dc}
-    .static-map.visible{display:block}
-    .map-frame.fallback-mode{height:auto;min-height:0}
-    .map-frame.fallback-mode .static-map{position:relative;inset:auto;width:100%;aspect-ratio:1500/563;background-image:url('assets/kingston-map-contrast.png');background-size:100% 100%;background-position:center;background-repeat:no-repeat}
-    .static-map img{position:absolute;width:1px;height:1px;opacity:.01;left:0;top:0}
-    .static-map.county-art{aspect-ratio:1680/1392!important;background-image:url('assets/ulster-county-map.png')!important;background-size:contain!important}
-    .pin-overlay{position:absolute;inset:0;z-index:4}
-    .paper-pin{position:absolute;width:30px;height:30px;border:3px solid #fff;border-radius:50%;background:var(--blossom);color:#fff;box-shadow:0 3px 9px rgba(0,0,0,.25);font-size:.67rem;font-weight:800;transform:translate(-50%,-50%)}
-    .paper-pin.selected{background:var(--deep);box-shadow:0 0 0 4px var(--sun),0 3px 9px rgba(0,0,0,.25)}
-    .static-credit{position:absolute;z-index:3;left:8px;bottom:7px;background:rgba(255,253,248,.9);color:#39463f;padding:4px 6px;font-size:.58rem}
-    .map-fallback{display:none}
-    .map-fallback.visible{display:block;padding:16px;border-top:1px solid var(--line);background:var(--surface)}
-    .map-fallback h3{margin:0;font-size:1.25rem}
-    .map-fallback p{margin:5px 0 0;color:var(--muted);font-size:.72rem}
-    .map-fallback ul{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px}
-    .map-fallback li{padding:0}
-    .map-fallback a{display:inline-block;border:1px solid var(--line);padding:7px 9px;font-weight:800;color:var(--river);font-size:.68rem;text-decoration:none}
+    .art-frame{margin:30px 0 0;border:1px solid var(--line);background:var(--surface);box-shadow:0 24px 60px rgba(19,59,73,.16)}
+    .art-frame img{display:block;width:100%;height:auto}
+    .art-frame figcaption{padding:10px 14px;font-size:.78rem;color:var(--muted);border-top:1px solid var(--line)}
 
-    .spread{display:none;padding:12px;background:var(--paper);color:#17201c;min-height:520px}
-    .spread.active{display:block}
-    .design-view{display:none;padding:12px;background:var(--paper);color:#17201c}
-    .design-view.active{display:block}
-    .design-toggle{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
-    .design-toggle button{min-height:44px;border:1px solid #17201c;background:transparent;font-weight:800;border-radius:2px;color:#17201c}
-    .design-toggle button[aria-pressed="true"]{background:#17201c;color:#f5ebdd}
-    .design-view img{width:100%;height:auto;display:block;border:1px solid #d8c9ae}
-    .design-note{font-size:.78rem;margin-top:8px;color:#4a524c}
-    .spread-note{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:0 0 10px;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#59635d}
-    .inside-sheet,.outside-sheet{display:grid;gap:7px}
-    .sheet-panel{position:relative;min-height:128px;border:1px dashed #87948a;background:rgba(255,253,248,.7);padding:10px;display:flex;flex-direction:column}
-    .sheet-panel h3{margin:0;font-size:1.1rem}
-    .sheet-panel p{margin:5px 0 0;font-size:.64rem;color:#59635d}
-    .sheet-map{min-height:250px;background:#dce9d7;overflow:hidden;position:relative}
-    .sheet-map:before,.sheet-map:after{content:"";position:absolute;inset:-25% -10%;border:2px solid rgba(42,109,127,.33);border-radius:47%;transform:rotate(-16deg)}
-    .sheet-map:after{inset:-10% 20% -30% -15%;border-color:rgba(53,94,59,.35);transform:rotate(26deg)}
-    .sheet-map h3,.sheet-map p,.sheet-map .paper-slots{position:relative;z-index:2}
-    .paper-slots{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:6px}
-    .paper-slot{border:1px solid #355e3b;background:#fffdf8;padding:8px;text-align:left;font-size:.68rem;font-weight:800}
-    .paper-slot.selected{background:#133b49;color:white}
-    .directory-sample{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:10px}
-    .directory-sample span{padding:5px;border-bottom:1px solid #c8c3b8;font-size:.58rem}
-    .outside-sheet{margin-top:7px}
-    .cover{background:#2a6d7f;color:#fffdf8;justify-content:space-between}.cover p{color:rgba(255,255,255,.76)}
-    .back-cover{background:#133b49;color:#fffdf8}.back-cover p{color:rgba(255,255,255,.72)}
-    .back-cover button{margin-top:auto;border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;padding:9px;font-weight:800;text-align:left}
+    /* trust strip */
+    .trust{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:34px 0 0}
+    .trust div{background:var(--surface);padding:14px}
+    .trust strong{display:block;font-size:.86rem}
+    .trust span{font-size:.76rem;color:var(--muted)}
+    @media(min-width:720px){.trust{grid-template-columns:repeat(4,1fr)}}
 
-    .inventory{border:1px solid var(--line);background:var(--surface);min-width:0}
-    .inventory-head{padding:18px;border-bottom:1px solid var(--line)}
-    .inventory-head h3{margin:0;font-size:1.65rem}
-    .inventory-head p{margin:6px 0 0;color:var(--muted);font-size:.78rem}
-    .filters{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:14px}
-    .filter{min-height:40px;border:1px solid var(--line);background:transparent;border-radius:2px;font-size:.68rem;font-weight:800;padding:6px}
-    .filter[aria-pressed="true"]{background:var(--spring);border-color:var(--ridge);color:var(--ridge)}
-    .slot-list{padding:8px;display:grid;gap:7px;max-height:600px;overflow-y:auto}
-    .slot-card{border:1px solid var(--line);background:var(--canvas);padding:12px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;text-align:left}
-    .slot-card.selected{border-color:var(--blossom);background:color-mix(in srgb,var(--blossom) 10%,var(--canvas))}
-    .slot-card .code{display:inline-block;color:var(--river);font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-    .slot-card h4{margin:3px 0 0;font-size:.86rem;line-height:1.25}
-    .slot-card p{margin:4px 0 0;color:var(--muted);font-size:.68rem}
-    .slot-price{text-align:right}
-    .slot-price strong{display:block;font:600 1.1rem/1 var(--serif)}
-    .slot-price span{font-size:.6rem;color:var(--muted)}
-    .empty-filter{padding:20px;color:var(--muted)}
+    section.block{padding:56px 0 0}
+    section.block h2{font-size:clamp(1.9rem,7vw,3rem);font-weight:600;max-width:22ch}
+    .section-sub{margin:12px 0 0;color:var(--muted);max-width:62ch}
+    .note{font-size:.8rem;color:var(--muted);margin:12px 0 0;max-width:64ch}
 
-    .after-map{padding:64px 0 0}
-    .value-split{display:grid;gap:28px;border-top:1px solid var(--line);padding-top:36px}
-    .value-split h2{margin:0;font-size:clamp(2.4rem,9vw,4.6rem);line-height:.95}
-    .value-list{list-style:none;padding:0;margin:0}
-    .value-list li{display:grid;grid-template-columns:42px 1fr;gap:13px;padding:17px 0;border-top:1px solid var(--line)}
-    .value-list li:last-child{border-bottom:1px solid var(--line)}
-    .value-list b{font:600 1.35rem/1 var(--serif);color:var(--blossom)}
-    .value-list strong{display:block}.value-list span{display:block;margin-top:5px;color:var(--muted);font-size:.82rem}
-    .fineprint{margin-top:28px;padding:15px;border:1px solid var(--line);color:var(--muted);font-size:.72rem}
+    /* interactive map */
+    .map-card{margin-top:22px;border:1px solid var(--line);background:#0e2a35;position:relative}
+    .map-card img{display:block;width:100%;height:auto}
+    .map-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}
+    .map-toggle button{min-height:48px;border:1px solid var(--line);background:var(--surface);border-radius:8px;font-weight:800}
+    .map-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
+    .pin-layer{position:absolute;inset:0}
+    .pin-btn{position:absolute;width:48px;height:48px;transform:translate(-50%,-50%);background:transparent;border:0;padding:0}
+    .pin-btn i{display:grid;place-items:center;width:30px;height:30px;margin:9px;border-radius:50%;background:#fff;color:#17201c;font-style:normal;font-weight:800;font-size:.82rem;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+    .pin-btn[aria-pressed="true"] i{background:var(--sun);box-shadow:0 0 0 5px rgba(215,170,53,.5),0 2px 10px rgba(0,0,0,.4)}
+    .art-soon{margin-top:22px;border:1px dashed var(--line);padding:34px 22px;text-align:center;color:var(--muted)}
+    .art-soon strong{display:block;color:var(--ink);font-family:var(--serif);font-size:1.4rem;margin-bottom:8px}
 
-    .basket-bar{position:fixed;z-index:900;left:0;right:0;bottom:0;background:var(--deep);color:var(--canvas);padding:10px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));transform:translateY(120%);transition:transform .22s ease;box-shadow:0 -14px 34px rgba(0,0,0,.2)}
-    .basket-bar.visible{transform:translateY(0)}
-    @media(prefers-color-scheme:dark){.basket-bar{color:#101713}}
-    .basket-inner{width:min(1220px,100%);margin:auto;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
-    .basket-inner small{display:block;opacity:.72}.basket-inner strong{font:600 1.35rem/1 var(--serif)}
-    .basket-button,.primary,.secondary{min-height:46px;border:1px solid transparent;border-radius:2px;padding:10px 14px;font-weight:800}
-    .basket-button,.primary{background:var(--blossom);color:white}
-    .secondary{background:transparent;border-color:var(--line)}
+    /* placements */
+    .edition-row{margin-top:22px;display:grid;gap:8px}
+    .edition-row label{font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .edition-row select{min-height:52px;border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:10px 12px;font-weight:700;width:100%}
+    .edition-desc{margin:10px 0 0;color:var(--muted);font-size:.92rem;max-width:64ch}
+    .filters{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+    .filter{min-height:44px;padding:8px 18px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-weight:700;font-size:.86rem}
+    .filter[aria-pressed="true"]{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
+    .slot-list{display:grid;gap:10px;margin-top:14px}
+    .slot-card{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;width:100%;text-align:left;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:16px}
+    .slot-card .code{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--river)}
+    .slot-card h3{font-size:1.12rem;margin:4px 0}
+    .slot-card p{margin:0;font-size:.84rem;color:var(--muted)}
+    .slot-price{text-align:right;flex-shrink:0}
+    .slot-price strong{display:block;font-family:var(--serif);font-size:1.35rem}
+    .slot-price span{font-size:.68rem;color:var(--muted)}
+    .slot-card[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)}
+    .slot-card .pick{font-size:.72rem;font-weight:800;color:var(--blossom);margin-top:8px;display:none}
+    .slot-card[aria-pressed="true"] .pick{display:block}
+    .empty-filter{color:var(--muted);padding:18px 0}
 
-    .drawer{position:fixed;z-index:1000;inset:0;background:rgba(7,14,10,.62);display:none;align-items:flex-end}
-    .drawer.open{display:flex}
-    .drawer-card{width:100%;max-height:92dvh;overflow:auto;background:var(--surface);padding:22px 18px calc(26px + env(safe-area-inset-bottom));border-top:5px solid var(--blossom)}
+    /* how it works */
+    .steps{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px}
+    .steps li{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:18px}
+    .steps b{display:block;font-family:var(--serif);font-size:1.05rem;margin-bottom:6px}
+    .steps b span{color:var(--blossom);margin-right:8px}
+    .steps p{margin:0;font-size:.9rem;color:var(--muted)}
+    @media(min-width:720px){.steps{grid-template-columns:repeat(3,1fr)}}
+
+    .fineprint{margin:44px 0 0;padding-top:18px;border-top:1px solid var(--line);font-size:.76rem;color:var(--muted);max-width:70ch}
+
+    footer{margin-top:44px;border-top:1px solid var(--line);padding:26px 0 120px;color:var(--muted);font-size:.84rem}
+    footer .shell{display:grid;gap:8px}
+    footer strong{color:var(--ink)}
+    footer a{color:var(--river);font-weight:700}
+
+    /* basket + drawer */
+    .basket-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;transform:translateY(110%);transition:transform .25s ease;background:var(--ink);color:var(--canvas);padding:10px 0 calc(10px + env(safe-area-inset-bottom))}
+    .basket-bar.visible{transform:none}
+    .basket-inner{width:min(1060px,calc(100% - 32px));margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .basket-inner small{display:block;opacity:.7}
+    .basket-inner strong{font-family:var(--serif);font-size:1.4rem}
+    .basket-button{min-height:48px;padding:10px 26px;border-radius:999px;border:0;background:var(--blossom);color:#fff;font-weight:800}
+    .drawer{position:fixed;inset:0;z-index:70;display:none;background:rgba(10,15,13,.55)}
+    .drawer.open{display:block}
+    .drawer-card{position:absolute;left:0;right:0;bottom:0;max-height:92dvh;overflow:auto;background:var(--surface);border-radius:16px 16px 0 0;padding:22px;width:min(560px,100%);margin-inline:auto}
     .drawer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-    .drawer h2{margin:0;font-size:2rem;line-height:1}
-    .close{width:44px;height:44px;border:1px solid var(--line);background:transparent;font-size:1.4rem}
-    .cart-list{list-style:none;padding:0;margin:20px 0 0;border-top:1px solid var(--line)}
-    .cart-list li{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
-    .cart-list strong{display:block;font-size:.82rem}.cart-list span{display:block;color:var(--muted);font-size:.68rem}
-    .remove{width:42px;height:42px;border:1px solid var(--line);background:transparent}
-    .drawer-total{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0}
-    .drawer-total strong{font:600 1.55rem/1 var(--serif);color:var(--river)}
-    .form{display:grid;gap:12px}
-    label{display:grid;gap:5px;font-size:.7rem;font-weight:800}
-    input{width:100%;min-height:48px;border:1px solid var(--line);background:var(--canvas);padding:10px 12px;border-radius:2px}
+    .drawer-top h2{font-size:1.7rem}
+    .close{min-width:48px;min-height:48px;border-radius:50%;border:1px solid var(--line);background:transparent;font-size:1.4rem;line-height:1}
+    .cart-list{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+    .cart-list li{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:.86rem}
+    .cart-list .remove{min-width:44px;min-height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;font-size:1.1rem}
+    .drawer-total{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-weight:800}
+    .drawer-total strong{font-family:var(--serif);font-size:1.5rem}
+    .form{display:grid;gap:10px;margin-top:16px}
+    .form label{display:grid;gap:6px;font-size:.8rem;font-weight:700}
+    .form input{min-height:52px;border:1px solid var(--line);border-radius:8px;background:var(--canvas);padding:10px 12px}
     .drawer-actions{display:grid;gap:8px;margin-top:16px}
-    .mail-note{margin:10px 0 0;color:var(--muted);font-size:.7rem}
-    .status{min-height:1.2em;margin:8px 0 0;color:var(--ridge);font-size:.72rem}
-    [hidden]{display:none!important}
+    .drawer-actions .primary{min-height:52px;border-radius:999px;border:0;background:var(--blossom);color:#fff;font-weight:800}
+    .drawer-actions .secondary{min-height:52px;border-radius:999px;border:1px solid var(--line);background:transparent;font-weight:700}
+    .mail-note,.status{font-size:.78rem;color:var(--muted)}
+    @media(min-width:720px){.drawer-card{top:5dvh;bottom:auto;border-radius:16px}}
 
-    @media(min-width:700px){
-      .shell{width:min(1220px,calc(100% - 48px))}
-      .hero{padding:66px 0 52px}.hero-grid{grid-template-columns:1.25fr .75fr;align-items:end}
-      .edition-grid{grid-template-columns:repeat(4,1fr)}
-      .workspace-head{grid-template-columns:1fr 330px;align-items:end}
-      .inside-sheet{grid-template-columns:1fr 2fr 1fr}.outside-sheet{grid-template-columns:repeat(3,1fr)}
-      .sheet-panel{min-height:450px}.sheet-map{min-height:450px}
-      .outside-sheet .sheet-panel{min-height:190px}
-      .filters{grid-template-columns:repeat(5,1fr)}
-      .value-split{grid-template-columns:.8fr 1.2fr;gap:70px}
-      .drawer{justify-content:flex-end;align-items:stretch}.drawer-card{width:min(530px,92vw);height:100%;max-height:none;border-top:0;border-left:5px solid var(--blossom);padding:30px}
-      .form{grid-template-columns:1fr 1fr}.form label:last-child{grid-column:1/-1}.drawer-actions{grid-template-columns:1fr auto}
-    }
-    @media(min-width:980px){
-      .edition-nav{position:sticky;top:0}.edition-grid{grid-template-columns:repeat(7,1fr)}
-      main{padding-top:44px}.workgrid{grid-template-columns:minmax(0,1.55fr) minmax(340px,.7fr);align-items:start}
-      .inventory{position:sticky;top:76px}.slot-list{max-height:650px}
-      #map,.map-frame,.map-fallback{height:650px;min-height:650px}
-      .spread{min-height:650px}.sheet-panel,.sheet-map{min-height:480px}
-    }
-    @media(max-width:430px){
-      .edition-btn{font-size:.72rem}.edition-btn span{font-size:.58rem}
-      .map-ad{min-width:66px;max-width:84px;padding:6px;font-size:.58rem}.ad-a4{top:138px}
-      .fact{padding:10px 7px}.fact strong{font-size:1rem}
-      .slot-list{max-height:none;overflow:visible}
-    }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.basket-bar{transition:none}}
+    /* lightbox */
+    .lightbox{position:fixed;inset:0;z-index:80;display:none;background:rgba(8,14,17,.94);padding:18px}
+    .lightbox.open{display:grid;place-items:center}
+    .lightbox img{max-width:100%;max-height:100%;object-fit:contain}
+    .lightbox .close{position:absolute;top:14px;right:14px;background:#fff;color:#17201c;border:0}
+
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.basket-bar{transition:none}}
   </style>
 </head>
 <body>
-  <div class="shell topline"><strong>Founding advertiser inventory</strong><span>Spring launch planning</span><a id="askQuestion" href="mailto:johnpeter@quigley.email?subject=Ulster%20Unfolded%20advertising%20question">Ask a question</a></div>
+  <div class="shell topline">
+    <span class="brand">Ulster <b>Unfolded</b></span>
+    <span>Founding advertiser inventory · Spring 2027</span>
+    <a id="askQuestion" href="mailto:johnpeter@quigley.email?subject=Ulster%20Unfolded%20advertising%20question">Ask a question</a>
+  </div>
 
   <header class="hero">
-    <div class="shell hero-grid">
-      <div>
-        <p class="kicker">Print map + mobile discovery</p>
-        <h1>Choose your town. <em>Claim your place.</em></h1>
-        <p class="hero-copy">Explore selected spring launch editions, compare every planned position, and build an advertising request. No generic rate-card guessing—see where the placement lives before you ask us to hold it.</p>
+    <div class="shell">
+      <p class="kicker">Kingston · First edition · Spring 2027</p>
+      <h1>Your business, on the map <em>Kingston keeps.</em></h1>
+      <p class="lede">Ulster Unfolded is a free, advertiser-funded street map — picked up where people are already deciding what to do next, and kept because it's genuinely useful. Founding placements for the Kingston launch edition are open now.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#placements">Browse placements</a>
+        <a class="btn ghost" href="#how">How it works</a>
       </div>
-      <aside class="launch-ticket" aria-label="How reservation requests work">
-        <small>Priority hold request</small>
-        <strong>Pick the edition, placement, and position.</strong>
-        <p>No payment is collected here. We confirm availability, artwork specifications, and the production schedule by email.</p>
-      </aside>
+      <figure class="art-frame">
+        <img src="assets/kingston-v4-latest.jpg" alt="Ulster Unfolded Kingston street map, After Dark design — real streets, parks, and districts" width="1800" height="675" decoding="async" />
+        <figcaption>The Kingston edition artwork — real streets, real parks, real districts. Drawn from U.S. Census TIGER/Line roads and OpenStreetMap green space.</figcaption>
+      </figure>
+      <div class="trust" aria-label="Why advertise">
+        <div><strong>Free for the public</strong><span>No paywall, no app download — people actually pick it up.</span></div>
+        <div><strong>Print + mobile</strong><span>One placement, seen on paper and on the phone.</span></div>
+        <div><strong>Verified addresses</strong><span>Every pin is tied to a real, verified business location.</span></div>
+        <div><strong>Kingston first</strong><span>The launch edition. Founding advertisers get founding placement.</span></div>
+      </div>
     </div>
   </header>
 
-  <nav class="edition-nav" aria-label="Choose a selected launch edition">
-    <div class="shell edition-grid" id="editionNav"></div>
-  </nav>
-
   <main>
     <div class="shell">
-      <section aria-labelledby="editionTitle">
-        <div class="workspace-head">
-          <div><p class="kicker" id="editionKicker">Town edition</p><h2 id="editionTitle">Kingston</h2><p id="editionDescription"></p></div>
-          <div class="edition-facts" aria-label="Edition facts">
-            <div class="fact"><strong id="openCount">20</strong><span>planned positions</span></div>
-            <div class="fact"><strong>Print + web</strong><span>one coordinated buy</span></div>
-            <div class="fact"><strong>Spring</strong><span>target release</span></div>
-          </div>
+      <section class="block" id="map" aria-labelledby="mapTitle">
+        <p class="kicker">The actual map</p>
+        <h2 id="mapTitle">This is what your placement appears on.</h2>
+        <p class="section-sub">Not a mockup — the working artwork for the Kingston edition. Tap a numbered pin to select that placement. Toggle between the two design directions below.</p>
+        <div class="map-toggle" role="group" aria-label="Choose map design" style="margin-top:18px">
+          <button type="button" data-design="v4" aria-pressed="true">V4 · After Dark</button>
+          <button type="button" data-design="v1" aria-pressed="false">V1 · First Light</button>
         </div>
-
-        <div class="view-tabs" role="group" aria-label="Choose placement view">
-          <button class="view-tab" type="button" data-view="map" aria-pressed="true">Street map</button>
-          <button class="view-tab" type="button" data-view="spread" aria-pressed="false">Folded layout</button>
-          <button class="view-tab" type="button" data-view="design" aria-pressed="false">Print design</button>
+        <div class="map-card" id="mapCard">
+          <img id="artImage" src="assets/kingston-v4-latest.jpg" alt="Interactive Kingston street map, After Dark design. Tap a numbered pin to select a placement." width="1800" height="675" />
+          <div class="pin-layer" id="pinLayer"></div>
         </div>
-
-        <div class="workgrid">
-          <section class="stage" aria-label="Interactive advertising map and print layout">
-            <div class="map-frame" id="mapFrame">
-              <div id="map" aria-label="Interactive OpenStreetMap showing the selected Ulster County edition"></div>
-              <div class="static-map" id="staticMap" aria-label="Detailed geographic map preview">
-                <img id="staticMapImage" src="assets/kingston-map.png" alt="Street-level Kingston map showing Uptown, Midtown, Downtown and Rondout" />
-                <div class="pin-overlay" id="pinOverlay">
-                  <button class="paper-pin" type="button" style="left:38.3%;top:31.2%" data-pin-link="P01" aria-label="Select map pin 1">1</button>
-                  <button class="paper-pin" type="button" style="left:37%;top:27.7%" data-pin-link="P02" aria-label="Select map pin 2">2</button>
-                  <button class="paper-pin" type="button" style="left:44.7%;top:36.8%" data-pin-link="P03" aria-label="Select map pin 3">3</button>
-                  <button class="paper-pin" type="button" style="left:48.6%;top:45.7%" data-pin-link="P04" aria-label="Select map pin 4">4</button>
-                  <button class="paper-pin" type="button" style="left:52.7%;top:56.6%" data-pin-link="P05" aria-label="Select map pin 5">5</button>
-                  <button class="paper-pin" type="button" style="left:60%;top:64.1%" data-pin-link="P06" aria-label="Select map pin 6">6</button>
-                  <button class="paper-pin" type="button" style="left:62%;top:67.2%" data-pin-link="P07" aria-label="Select map pin 7">7</button>
-                  <button class="paper-pin" type="button" style="left:34%;top:32.4%" data-pin-link="P08" aria-label="Select map pin 8">8</button>
-                </div>
-                <span class="static-credit">Geographic artwork prepared from public road data</span>
-              </div>
-              <div class="map-note"><strong>Street-map placement preview</strong>Pin placement follows a verified business address. Corner blocks preview display-ad positions around the paper map.</div>
-              <button class="map-ad ad-a1" type="button" data-slot-link="A1">A1 <small>$695</small></button>
-              <button class="map-ad ad-a2" type="button" data-slot-link="A2">A2 <small>$695</small></button>
-              <button class="map-ad ad-a3" type="button" data-slot-link="A3">A3 <small>$695</small></button>
-              <button class="map-ad ad-a4" type="button" data-slot-link="A4">A4 <small>$695</small></button>
-            </div>
-            <div class="map-fallback" id="mapFallback">
-              <h3>Open the districts in your maps app</h3>
-              <p>The artwork above stays selectable; these links open current road navigation separately.</p>
-              <ul id="fallbackList"></ul>
-            </div>
-            <div class="spread" id="spreadView">
-              <div class="spread-note"><span>Planned folded map</span><span>Tap a labeled space to select</span></div>
-              <div class="inside-sheet">
-                <article class="sheet-panel"><h3>Pin index</h3><p>Numbered locations matched to the street map.</p><div class="directory-sample" id="pinSample"></div></article>
-                <article class="sheet-panel sheet-map"><h3 id="paperMapName">Kingston street map</h3><p>Real streets, districts, wayfinding, and verified advertiser pins.</p><div class="paper-slots"><button class="paper-slot" type="button" data-slot-link="A1">A1 · map-edge</button><button class="paper-slot" type="button" data-slot-link="A2">A2 · map-edge</button><button class="paper-slot" type="button" data-slot-link="A3">A3 · map-edge</button><button class="paper-slot" type="button" data-slot-link="A4">A4 · map-edge</button></div></article>
-                <article class="sheet-panel"><h3>Town directory</h3><p>Eat, stay, shop, play, and services—built to be used, not discarded.</p><div class="directory-sample"><span>Eat</span><span>Stay</span><span>Shop</span><span>Play</span><span>Services</span><span>Events</span></div></article>
-              </div>
-              <div class="outside-sheet">
-                <article class="sheet-panel cover"><h3>Edition cover</h3><p>A recognizable spring cover for brochure racks and front desks.</p></article>
-                <article class="sheet-panel"><h3>Local guide</h3><p>Short editorial routes, seasonal notes, and a QR path into the mobile map.</p><button class="paper-slot" type="button" data-slot-link="H1">H1 · half panel</button></article>
-                <article class="sheet-panel back-cover"><h3>Back cover</h3><p>The most visible single placement in the edition.</p><button type="button" data-slot-link="C1">C1 · reserve the back cover</button></article>
-              </div>
-            </div>
-            <div class="design-view" id="designView">
-              <div class="design-toggle" role="group" aria-label="Choose print design version">
-                <button type="button" data-design="v4" aria-pressed="true">V4 · After Dark</button>
-                <button type="button" data-design="v1" aria-pressed="false">V1 · First Light</button>
-              </div>
-              <img id="designImage" src="assets/kingston-v4-latest.jpg" alt="Latest Kingston print map design, version 4 After Dark" />
-              <p class="design-note"><strong>Latest artwork.</strong> Numbered ad pins are concept positions; final pin placement follows each advertiser's verified address. Tap the image to zoom in your browser.</p>
-            </div>
-          </section>
-
-          <aside class="inventory" aria-label="Advertising inventory">
-            <div class="inventory-head">
-              <h3>Placement inventory</h3>
-              <p>Planning rates. Final availability is confirmed before any invoice.</p>
-              <div class="filters" role="group" aria-label="Filter advertising inventory">
-                <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
-                <button class="filter" type="button" data-filter="pin" aria-pressed="false">Pins</button>
-                <button class="filter" type="button" data-filter="directory" aria-pressed="false">Directory</button>
-                <button class="filter" type="button" data-filter="display" aria-pressed="false">Display</button>
-                <button class="filter" type="button" data-filter="premium" aria-pressed="false">Premium</button>
-              </div>
-            </div>
-            <div class="slot-list" id="slotList"></div>
-          </aside>
+        <div class="art-soon" id="artSoon" hidden>
+          <strong>Artwork in production</strong>
+          <span>Placement inventory for this edition is open, but the printed artwork isn't finished yet. Your pin and listing positions are confirmed before anything goes to press.</span>
         </div>
+        <p class="note">Numbered pins show concept positions. Your final pin is placed at your verified business address — tap the map to enlarge it.</p>
       </section>
 
-      <section class="after-map">
-        <div class="value-split">
-          <div><p class="kicker">One placement, two moments</p><h2>Seen in print. Useful on the phone.</h2></div>
-          <ol class="value-list">
-            <li><b>01</b><div><strong>Decision-point print</strong><span>Your business appears on a street map people pick up where they are already deciding what to do next.</span></div></li>
-            <li><b>02</b><div><strong>Numbered pin + directory</strong><span>The map marker is matched to a categorized listing, so readers can find the name, context, and location without hunting.</span></div></li>
-            <li><b>03</b><div><strong>Mobile profile + directions</strong><span>The web companion can carry a tappable business profile and hand the visitor off to their maps app for live directions.</span></div></li>
-            <li><b>04</b><div><strong>Edition-by-edition reach</strong><span>Start in one town or assemble a package across the spring launch editions.</span></div></li>
-          </ol>
+      <section class="block" id="placements" aria-labelledby="placementsTitle">
+        <p class="kicker">Placement inventory</p>
+        <h2 id="placementsTitle">Choose your placement.</h2>
+        <p class="section-sub">Planning rates. Nothing is sold or held until we confirm availability by email — no payment is collected on this page.</p>
+        <div class="edition-row">
+          <label for="editionSelect">Edition</label>
+          <select id="editionSelect"></select>
+          <p class="edition-desc" id="editionDescription"></p>
         </div>
-        <p class="fineprint">This is a sales-planning preview, not a press proof. Street geography comes from OpenStreetMap; proposed ad positions, rates, quantities, and release timing remain subject to production review. No placement is sold or held until confirmed by email.</p>
+        <div class="filters" role="group" aria-label="Filter placements">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-filter="pin" aria-pressed="false">Pins</button>
+          <button class="filter" type="button" data-filter="directory" aria-pressed="false">Directory</button>
+          <button class="filter" type="button" data-filter="display" aria-pressed="false">Display</button>
+          <button class="filter" type="button" data-filter="premium" aria-pressed="false">Premium</button>
+        </div>
+        <div class="slot-list" id="slotList"></div>
+      </section>
+
+      <section class="block" id="how" aria-labelledby="howTitle">
+        <p class="kicker">How it works</p>
+        <h2 id="howTitle">Three steps to the printed page.</h2>
+        <ol class="steps">
+          <li><b><span>01</span>Pick a placement</b><p>Browse the map and the inventory, then send a priority hold request. No payment here — just a request.</p></li>
+          <li><b><span>02</span>We verify</b><p>We confirm availability and verify your business address before anything is drawn or promised.</p></li>
+          <li><b><span>03</span>You approve</b><p>You review your pin, listing, and artwork. Nothing goes to press without your sign-off.</p></li>
+        </ol>
+        <p class="fineprint">Sales-planning preview, not a press proof. Street geography: U.S. Census TIGER/Line and OpenStreetMap contributors. Ad positions, rates, quantities, and release timing are subject to production review. No placement is sold or held until confirmed by email.</p>
       </section>
     </div>
   </main>
 
+  <footer>
+    <div class="shell">
+      <div><strong>Ulster Unfolded</strong> · Ulster County, New York</div>
+      <div>Questions about a placement? <a id="footerAsk" href="mailto:johnpeter@quigley.email?subject=Ulster%20Unfolded%20advertising%20question">johnpeter@quigley.email</a></div>
+      <div>© 2026 Ulster Unfolded · Ulster, unfolded.</div>
+    </div>
+  </footer>
+
   <div class="basket-bar" id="basketBar">
-    <div class="basket-inner"><div><small id="basketCount">0 placements</small><strong id="basketTotal">$0</strong></div><button class="basket-button" type="button" id="reviewButton">Review request</button></div>
+    <div class="basket-inner">
+      <div><small id="basketCount">0 placements</small><strong id="basketTotal">$0</strong></div>
+      <button class="basket-button" type="button" id="reviewButton">Review request</button>
+    </div>
   </div>
 
   <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
     <div class="drawer-card">
-      <div class="drawer-top"><div><p class="kicker">Priority hold</p><h2 id="drawerTitle">Review your request</h2></div><button class="close" type="button" id="closeDrawer" aria-label="Close">×</button></div>
+      <div class="drawer-top">
+        <div><p class="kicker">Priority hold</p><h2 id="drawerTitle">Review your request</h2></div>
+        <button class="close" type="button" id="closeDrawer" aria-label="Close">×</button>
+      </div>
       <ul class="cart-list" id="cartList"></ul>
       <div class="drawer-total"><span>Planning total</span><strong id="drawerTotal">$0</strong></div>
       <div class="form">
@@ -379,17 +260,20 @@
         <label>Your name<input id="contactName" autocomplete="name" /></label>
         <label>Email<input id="contactEmail" type="email" autocomplete="email" /></label>
       </div>
-      <div class="drawer-actions"><button class="primary" type="button" id="emailRequest">Open reservation email</button><button class="secondary" type="button" id="copyRequest">Copy request</button></div>
-      <p class="mail-note" id="mailNote">The email button opens a draft addressed to johnpeter@quigley.email. You still review and send it from your own mail app.</p>
+      <div class="drawer-actions">
+        <button class="primary" type="button" id="emailRequest">Open reservation email</button>
+        <button class="secondary" type="button" id="copyRequest">Copy request</button>
+      </div>
+      <p class="mail-note">The email button opens a draft addressed to johnpeter@quigley.email. You review and send it from your own mail app.</p>
       <p class="status" id="status" aria-live="polite"></p>
     </div>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged map artwork">
+    <button class="close" type="button" id="lightboxClose" aria-label="Close enlarged map">×</button>
+    <img id="lightboxImage" src="assets/kingston-v4-latest.jpg" alt="Enlarged Kingston street map artwork" />
+  </div>
   <script>
-    // Reservation config — the single source of truth for where hold requests
-    // go. Change the recipient here; the "Ask a question" link, the reservation
-    // mailto draft, and the explanatory copy below are all generated from it.
     const RESERVATION = {
       email: 'johnpeter@quigley.email',
       subject: 'Ulster Unfolded advertising placement request',
@@ -397,85 +281,110 @@
     };
 
     const editions = {
-      kingston: {
-        name: 'City of Kingston', label: 'Kingston', kind: 'City edition', sub: 'Uptown · Midtown · Rondout', center: [41.92611,-73.99699], zoom: 14,
-        description: 'A street-level city edition connecting Uptown’s Stockade District, the Broadway corridor through Midtown, and Downtown at the Rondout waterfront.',
-        zones: [
-          {label:'Uptown', short:'UP', lat:41.93373,lng:-74.0198,note:'Stockade District / Wall Street'},
-          {label:'Midtown', short:'MT', lat:41.92611,lng:-73.99699,note:'Broadway corridor'},
-          {label:'Downtown', short:'DT', lat:41.91828,lng:-73.98338,note:'Rondout / West Strand'}
-        ]
-      },
-      newpaltz: {name:'New Paltz',label:'New Paltz',kind:'Town edition',sub:'Village + approaches',center:[41.74344,-74.07007],zoom:14,description:'A walkable village map centered on New Paltz, with room for street-level advertiser pins, the directory, and approaches into the village.',zones:[{label:'Village core',short:'VC',lat:41.74344,lng:-74.07007,note:'New Paltz village'}]},
-      woodstock: {name:'Woodstock',label:'Woodstock',kind:'Town edition',sub:'Village center',center:[42.04088,-74.12966],zoom:14,description:'A compact village edition built around the real Woodstock street network, with discoverable listings for shops, food, lodging, arts, and services.',zones:[{label:'Village center',short:'VC',lat:42.04088,lng:-74.12966,note:'Woodstock village'}]},
-      saugerties: {name:'Saugerties',label:'Saugerties',kind:'Town edition',sub:'Village core',center:[42.07869,-73.95242],zoom:14,description:'A street-level village edition organized around Partition Street and the surrounding Saugerties business district.',zones:[{label:'Village core',short:'VC',lat:42.07869,lng:-73.95242,note:'Partition Street area'}]},
-      ellenville: {name:'Village of Ellenville',label:'Ellenville',kind:'Village edition',sub:'Village streets',center:[41.71734,-74.39054],zoom:14,description:'A village edition for Ellenville’s Main Street area, local destinations, and the businesses serving the southern part of the county.',zones:[{label:'Village area',short:'VA',lat:41.71734,lng:-74.39054,note:'Ellenville village'}]},
-      marlborough: {name:'Marlborough',label:'Marlborough',kind:'Planned town edition',sub:'Marlboro · Route 9W',center:[41.60517,-73.97153],zoom:14,description:'A planned southern-county edition centered on Marlboro and the Route 9W business corridor.',zones:[{label:'Marlboro',short:'MA',lat:41.60517,lng:-73.97153,note:'Marlboro, NY 12542'}]},
-      lloyd: {name:'Lloyd',label:'Lloyd',kind:'Planned town edition',sub:'Highland',center:[41.71677,-73.96639],zoom:14,description:'A planned Lloyd edition centered on Highland and its connected local business district.',zones:[{label:'Highland',short:'HI',lat:41.71677,lng:-73.96639,note:'Highland, NY 12528'}]},
-      esopus: {name:'Esopus',label:'Esopus',kind:'Planned town edition',sub:'Port Ewen area',center:[41.91102,-73.97317],zoom:14,description:'A planned Esopus edition centered on Port Ewen, with advertiser inventory tied to verified local addresses.',zones:[{label:'Port Ewen',short:'PE',lat:41.91102,lng:-73.97317,note:'Port Ewen, NY 12466'}]},
-      ulster: {name:'Town of Ulster',label:'Ulster',kind:'Planned town edition',sub:'Ulster Avenue area',center:[41.96847,-73.98893],zoom:14,description:'A planned Town of Ulster edition for the Ulster Avenue area and nearby destinations.',zones:[{label:'Ulster Avenue',short:'UA',lat:41.96847,lng:-73.98893,note:'Ulster Avenue, Ulster, NY'}]},
-      hurley: {name:'Hurley',label:'Hurley',kind:'Planned town edition',sub:'Historic Hurley',center:[41.9263,-74.06458],zoom:14,description:'A planned Hurley edition balancing historic-area wayfinding with local service and destination listings.',zones:[{label:'Hurley',short:'HU',lat:41.9263,lng:-74.06458,note:'Hurley, NY 12443'}]},
-      shawangunk: {name:'Shawangunk',label:'Shawangunk',kind:'Planned town edition',sub:'Town-wide',center:[41.64774,-74.38919],zoom:13,description:'A planned Shawangunk edition with verified pins organized around the town’s real road network.',zones:[{label:'Shawangunk',short:'SH',lat:41.64774,lng:-74.38919,note:'Shawangunk, NY 12566'}]},
-      gardiner: {name:'Gardiner',label:'Gardiner',kind:'Planned town edition',sub:'Hamlet center',center:[41.67999,-74.1512],zoom:14,description:'A planned Gardiner edition centered on the hamlet and the businesses visitors reach from surrounding roads.',zones:[{label:'Gardiner',short:'GA',lat:41.67999,lng:-74.1512,note:'Gardiner, NY 12525'}]},
-      denning: {name:'Denning',label:'Denning',kind:'Later town edition',sub:'Coming later',center:[41.94763,-74.57219],zoom:12,description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.',zones:[{label:'Denning',short:'DE',lat:41.94763,lng:-74.57219,note:'Denning, NY 12725'}]},
-      hardenburgh: {name:'Hardenburgh',label:'Hardenburgh',kind:'Later town edition',sub:'Coming later',center:[42.02443,-74.7094],zoom:12,description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.',zones:[{label:'Hardenburgh',short:'HA',lat:42.02443,lng:-74.7094,note:'Hardenburgh, NY 12758'}]},
-      townofkingston: {name:'Town of Kingston',label:'Town of Kingston',kind:'Later town edition',sub:'Coming later',center:[41.92,-74.12],zoom:10,description:'A later-phase Town of Kingston edition. The precise geographic view is still in production; displayed positions remain planning inventory.',zones:[]},
-      marbletown: {name:'Marbletown',label:'Marbletown',kind:'Later town edition',sub:'Coming later',center:[41.84789,-74.14396],zoom:13,description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.',zones:[{label:'Marbletown',short:'MB',lat:41.84789,lng:-74.14396,note:'Marbletown, NY 12484'}]},
-      olive: {name:'Olive',label:'Olive',kind:'Later town edition',sub:'Coming later',center:[41.92,-74.12],zoom:10,description:'A later-phase Town of Olive edition. The precise geographic view is still in production; displayed positions remain planning inventory.',zones:[]},
-      plattekill: {name:'Plattekill',label:'Plattekill',kind:'Later town edition',sub:'Coming later',center:[41.59194,-74.05792],zoom:13,description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.',zones:[{label:'Plattekill',short:'PL',lat:41.59194,lng:-74.05792,note:'Plattekill, NY 12589'}]},
-      rochester: {name:'Rochester',label:'Rochester',kind:'Later town edition',sub:'Coming later',center:[41.92,-74.12],zoom:10,description:'A later-phase Town of Rochester edition. The precise geographic view is still in production; displayed positions remain planning inventory.',zones:[]},
-      rosendale: {name:'Rosendale',label:'Rosendale',kind:'Later town edition',sub:'Coming later',center:[41.84461,-74.07922],zoom:14,description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.',zones:[{label:'Rosendale',short:'RO',lat:41.84461,lng:-74.07922,note:'Rosendale, NY 12472'}]},
-      shandaken: {name:'Shandaken',label:'Shandaken',kind:'Later town edition',sub:'Coming later',center:[42.12056,-74.39656],zoom:12,description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.',zones:[{label:'Shandaken',short:'SK',lat:42.12056,lng:-74.39656,note:'Shandaken, NY 12480'}]},
-      wawarsing: {name:'Wawarsing',label:'Wawarsing',kind:'Later town edition',sub:'Coming later',center:[41.75765,-74.35863],zoom:13,description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.',zones:[{label:'Wawarsing',short:'WA',lat:41.75765,lng:-74.35863,note:'Wawarsing, NY 12458'}]},
-      county: {name:'Ulster County',label:'County',kind:'County edition',sub:'Town-to-town overview',center:[41.92,-74.12],zoom:10,description:'The county-wide flagship: real roads and place context for trip planning, with town-centered pin inventory and links into the street-level editions.',zones:[
-        {label:'Kingston',short:'KI',lat:41.93673,lng:-74.0176,note:'Kingston'},
-        {label:'New Paltz',short:'NP',lat:41.74344,lng:-74.07007,note:'New Paltz'},
-        {label:'Woodstock',short:'WO',lat:42.04088,lng:-74.12966,note:'Woodstock'},
-        {label:'Saugerties',short:'SA',lat:42.07869,lng:-73.95242,note:'Saugerties'},
-        {label:'Ellenville',short:'EL',lat:41.71734,lng:-74.39054,note:'Ellenville'}
-      ]}
+      kingston: {name:'City of Kingston',label:'Kingston',kind:'City edition',group:'now',artwork:true,description:'A street-level city edition connecting Uptown\u2019s Stockade District, the Broadway corridor through Midtown, and Downtown at the Rondout waterfront.'},
+      newpaltz: {name:'New Paltz',label:'New Paltz',kind:'Town edition',group:'now',description:'A walkable village map centered on New Paltz, with room for street-level advertiser pins, the directory, and approaches into the village.'},
+      woodstock: {name:'Woodstock',label:'Woodstock',kind:'Town edition',group:'now',description:'A compact village edition built around the real Woodstock street network, with discoverable listings for shops, food, lodging, arts, and services.'},
+      saugerties: {name:'Saugerties',label:'Saugerties',kind:'Town edition',group:'now',description:'A street-level village edition organized around Partition Street and the surrounding Saugerties business district.'},
+      ellenville: {name:'Village of Ellenville',label:'Ellenville',kind:'Village edition',group:'now',description:'A village edition for Ellenville\u2019s Main Street area, local destinations, and the businesses serving the southern part of the county.'},
+      marlborough: {name:'Marlborough',label:'Marlborough',kind:'Planned town edition',group:'planned',description:'A planned southern-county edition centered on Marlboro and the Route 9W business corridor.'},
+      lloyd: {name:'Lloyd',label:'Lloyd',kind:'Planned town edition',group:'planned',description:'A planned Lloyd edition centered on Highland and its connected local business district.'},
+      esopus: {name:'Esopus',label:'Esopus',kind:'Planned town edition',group:'planned',description:'A planned Esopus edition centered on Port Ewen, with advertiser inventory tied to verified local addresses.'},
+      ulster: {name:'Town of Ulster',label:'Ulster',kind:'Planned town edition',group:'planned',description:'A planned Town of Ulster edition for the Ulster Avenue area and nearby destinations.'},
+      hurley: {name:'Hurley',label:'Hurley',kind:'Planned town edition',group:'planned',description:'A planned Hurley edition balancing historic-area wayfinding with local service and destination listings.'},
+      shawangunk: {name:'Shawangunk',label:'Shawangunk',kind:'Planned town edition',group:'planned',description:'A planned Shawangunk edition with verified pins organized around the town\u2019s real road network.'},
+      gardiner: {name:'Gardiner',label:'Gardiner',kind:'Planned town edition',group:'planned',description:'A planned Gardiner edition centered on the hamlet and the businesses visitors reach from surrounding roads.'},
+      denning: {name:'Denning',label:'Denning',kind:'Later town edition',group:'later',description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.'},
+      hardenburgh: {name:'Hardenburgh',label:'Hardenburgh',kind:'Later town edition',group:'later',description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.'},
+      townofkingston: {name:'Town of Kingston',label:'Town of Kingston',kind:'Later town edition',group:'later',description:'A later-phase Town of Kingston edition. The precise geographic view is still in production; displayed positions remain planning inventory.'},
+      marbletown: {name:'Marbletown',label:'Marbletown',kind:'Later town edition',group:'later',description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.'},
+      olive: {name:'Olive',label:'Olive',kind:'Later town edition',group:'later',description:'A later-phase Town of Olive edition. The precise geographic view is still in production; displayed positions remain planning inventory.'},
+      plattekill: {name:'Plattekill',label:'Plattekill',kind:'Later town edition',group:'later',description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.'},
+      rochester: {name:'Rochester',label:'Rochester',kind:'Later town edition',group:'later',description:'A later-phase Town of Rochester edition. The precise geographic view is still in production; displayed positions remain planning inventory.'},
+      rosendale: {name:'Rosendale',label:'Rosendale',kind:'Later town edition',group:'later',description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.'},
+      shandaken: {name:'Shandaken',label:'Shandaken',kind:'Later town edition',group:'later',description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.'},
+      wawarsing: {name:'Wawarsing',label:'Wawarsing',kind:'Later town edition',group:'later',description:'A later-phase town edition. Geographic scope and inventory will be finalized before advertising opens.'},
+      county: {name:'Ulster County',label:'County flagship',kind:'County edition',group:'later',description:'The county-wide flagship: real roads and place context for trip planning, with town-centered pin inventory and links into the street-level editions.'}
     };
+    const GROUPS = [['now','Now planning'],['planned','Planned'],['later','Later']];
 
     const baseSlots = [
-      ...Array.from({length:8},(_,i)=>({id:`P${String(i+1).padStart(2,'0')}`,kind:'pin',name:`Map pin ${String(i+1).padStart(2,'0')}`,price:195,desc:'Verified location pin + numbered paper index + mobile profile'})),
-      ...Array.from({length:4},(_,i)=>({id:`D${i+1}`,kind:'directory',name:`Directory feature ${i+1}`,price:395,desc:'Enhanced listing with description, category, QR, and mobile profile'})),
+      ...Array.from({length:8},(_,i)=>({id:`P${String(i+1).padStart(2,'0')}`,kind:'pin',name:`Map pin ${String(i+1).padStart(2,'0')}`,price:195,desc:'Numbered map pin + paper index entry + mobile business profile'})),
+      ...Array.from({length:4},(_,i)=>({id:`D${i+1}`,kind:'directory',name:`Directory feature ${i+1}`,price:395,desc:'Enhanced listing with description, category, QR code, and mobile profile'})),
       ...Array.from({length:4},(_,i)=>({id:`A${i+1}`,kind:'display',name:`Map-edge display ${i+1}`,price:695,desc:'Color display block beside the street map + mobile feature'})),
-
       ...Array.from({length:2},(_,i)=>({id:`H${i+1}`,kind:'premium',name:`Half-panel feature ${i+1}`,price:1150,desc:'Large-format guide-side ad with linked mobile profile'})),
       {id:'C1',kind:'premium',name:'Back cover',price:1850,desc:'Single full back-cover position + featured mobile placement'},
       {id:'S1',kind:'premium',name:'Edition sponsor',price:2500,desc:'Top billing across the edition, directory, and mobile companion'}
     ];
 
+    // Measured positions of the baked numbered pins on each artwork (percent of image).
+    const PIN_POS = {
+      v4:{1:[41.2,30.2],2:[40.3,26.8],3:[47.1,35.5],4:[50.7,43.8],5:[53.2,54.4],6:[61.4,61.4],7:[61.9,64.8],8:[32.8,31.4]},
+      v1:{1:[38.1,34.1],2:[36.5,30.9],3:[45.9,39.3],4:[50.8,47.7],5:[54.5,58.3],6:[61.6,65.3],7:[62.9,68.8],8:[33.9,35.2]}
+    };
+    const ART = {
+      v4:{src:'assets/kingston-v4-latest.jpg',label:'After Dark'},
+      v1:{src:'assets/kingston-v1-latest.jpg',label:'First Light'}
+    };
+
     let currentEdition='kingston';
     let currentFilter='all';
-    let currentView='map';
+    let currentDesign='v4';
     const selected=new Map();
-    let map, markerGroup;
 
-    function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n)}
-    function slotKey(edition,id){return `${edition}:${id}`}
-    function editionSlots(key){
+    const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n);
+    const slotKey=(edition,id)=>`${edition}:${id}`;
+    const editionSlots=key=>{
       const multiplier=key==='county'?1.22:1;
       return baseSlots.map(s=>({...s,edition:key,price:Math.round((s.price*multiplier)/5)*5,key:slotKey(key,s.id)}));
-    }
+    };
 
-    function renderEditionNav(){
-      const nav=document.getElementById('editionNav'); nav.innerHTML='';
-      Object.entries(editions).forEach(([key,e])=>{
-        const b=document.createElement('button'); b.type='button'; b.className='edition-btn'; b.dataset.edition=key; b.setAttribute('aria-pressed',String(key===currentEdition));
-        b.innerHTML=`${e.label}<span>${e.sub}</span>`; b.addEventListener('click',()=>setEdition(key)); nav.appendChild(b);
+    function renderEditionSelect(){
+      const sel=document.getElementById('editionSelect'); sel.innerHTML='';
+      GROUPS.forEach(([g,label])=>{
+        const og=document.createElement('optgroup'); og.label=label;
+        Object.entries(editions).filter(([,e])=>e.group===g).forEach(([key,e])=>{
+          const o=document.createElement('option'); o.value=key; o.textContent=`${e.label} — ${e.kind}`;
+          if(key===currentEdition) o.selected=true; og.appendChild(o);
+        });
+        sel.appendChild(og);
       });
+      sel.addEventListener('change',()=>setEdition(sel.value));
     }
 
     function setEdition(key){
       currentEdition=key; const e=editions[key];
-      document.querySelectorAll('.edition-btn').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.edition===key)));
-      document.getElementById('editionKicker').textContent=e.kind;
-      document.getElementById('editionTitle').textContent=e.name;
-      document.getElementById('editionDescription').textContent=e.description;
-      document.getElementById('paperMapName').textContent=`${e.name} street map`;
-      document.getElementById('openCount').textContent=baseSlots.length;
-      renderSlots(); renderPinSample(); updateStaticArt(); updateMap(); updateSlotHighlights();
+      document.getElementById('editionSelect').value=key;
+      document.getElementById('editionDescription').textContent=`${e.kind} · ${e.description}`;
+      const hasArt=!!e.artwork;
+      document.getElementById('mapCard').hidden=!hasArt;
+      document.getElementById('artSoon').hidden=hasArt;
+      renderSlots(); renderPins();
+    }
+
+    function setDesign(v){
+      currentDesign=v;
+      document.querySelectorAll('.map-toggle button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.design===v)));
+      const img=document.getElementById('artImage');
+      img.src=ART[v].src;
+      img.alt=`Interactive Kingston street map, ${ART[v].label} design. Tap a numbered pin to select a placement.`;
+      document.getElementById('lightboxImage').src=ART[v].src;
+      renderPins();
+    }
+
+    function renderPins(){
+      const layer=document.getElementById('pinLayer'); layer.innerHTML='';
+      if(!editions[currentEdition].artwork) return;
+      const pos=PIN_POS[currentDesign];
+      for(let i=1;i<=8;i++){
+        const id=`P${String(i).padStart(2,'0')}`;
+        const b=document.createElement('button'); b.type='button'; b.className='pin-btn';
+        b.style.left=pos[i][0]+'%'; b.style.top=pos[i][1]+'%';
+        b.setAttribute('aria-pressed',String(selected.has(slotKey(currentEdition,id))));
+        b.setAttribute('aria-label',`Select map pin ${i}, $195 planning rate`);
+        b.innerHTML=`<i>${i}</i>`;
+        b.addEventListener('click',()=>selectLinked(id));
+        layer.appendChild(b);
+      }
     }
 
     function renderSlots(){
@@ -483,30 +392,19 @@
       const slots=editionSlots(currentEdition).filter(s=>currentFilter==='all'||s.kind===currentFilter);
       if(!slots.length){list.innerHTML='<p class="empty-filter">No placements in this filter.</p>';return}
       slots.forEach(s=>{
-        const b=document.createElement('button'); b.type='button'; b.className='slot-card'; b.dataset.key=s.key; b.setAttribute('aria-pressed',String(selected.has(s.key)));
-        if(selected.has(s.key)) b.classList.add('selected');
-        b.innerHTML=`<div><span class="code">${s.id} · ${s.kind}</span><h4>${s.name}</h4><p>${s.desc}</p></div><div class="slot-price"><strong>${money(s.price)}</strong><span>planning rate</span></div>`;
+        const b=document.createElement('button'); b.type='button'; b.className='slot-card';
+        b.setAttribute('aria-pressed',String(selected.has(s.key)));
+        b.innerHTML=`<div><span class="code">${s.id} · ${s.kind}</span><h3>${s.name}</h3><p>${s.desc}</p><span class="pick">✓ Selected — tap to remove</span></div><div class="slot-price"><strong>${money(s.price)}</strong><span>planning rate</span></div>`;
         b.addEventListener('click',()=>toggleSlot(s)); list.appendChild(b);
       });
     }
 
-    function renderPinSample(){
-      const wrap=document.getElementById('pinSample'); wrap.innerHTML='';
-      for(let i=1;i<=8;i++){const id=`P${String(i).padStart(2,'0')}`;const span=document.createElement('span');span.textContent=`${id} · available`; if(selected.has(slotKey(currentEdition,id))) span.style.fontWeight='800';wrap.appendChild(span)}
-    }
-
     function toggleSlot(slot){
       if(selected.has(slot.key)) selected.delete(slot.key); else selected.set(slot.key,slot);
-      renderSlots(); renderPinSample(); updateBasket(); updateSlotHighlights();
+      renderSlots(); renderPins(); updateBasket();
     }
-
     function selectLinked(id){
       const slot=editionSlots(currentEdition).find(s=>s.id===id); if(slot) toggleSlot(slot);
-    }
-
-    function updateSlotHighlights(){
-      document.querySelectorAll('[data-slot-link]').forEach(el=>el.classList.toggle('selected',selected.has(slotKey(currentEdition,el.dataset.slotLink))));
-      document.querySelectorAll('[data-pin-link]').forEach(el=>el.classList.toggle('selected',selected.has(slotKey(currentEdition,el.dataset.pinLink))));
     }
 
     function updateBasket(){
@@ -516,61 +414,14 @@
       document.getElementById('basketTotal').textContent=money(total);
     }
 
-    function initMap(){
-      try{
-        if(!window.L) throw new Error('Leaflet unavailable');
-        map=L.map('map',{zoomControl:true,scrollWheelZoom:false,tap:true}).setView(editions[currentEdition].center,editions[currentEdition].zoom);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'}).addTo(map);
-        markerGroup=L.layerGroup().addTo(map); updateMap();
-      }catch(err){showMapFallback()}
-    }
-
-    function showMapFallback(){
-      document.getElementById('map').style.display='none';
-      document.getElementById('mapFrame').classList.add('fallback-mode');
-      document.getElementById('staticMap').classList.add('visible');
-      document.getElementById('mapFallback').classList.add('visible');
-      renderFallback();
-    }
-
-    function updateStaticArt(){
-      const isKingston=currentEdition==='kingston';
-      const image=document.getElementById('staticMapImage');
-      const wrap=document.getElementById('staticMap');
-      image.src=isKingston?'assets/kingston-map.png':'assets/ulster-county-map.png';
-      image.alt=isKingston?'Street-level Kingston map showing Uptown, Midtown, Downtown and Rondout':`Ulster County travel map highlighting the ${editions[currentEdition].name} edition area`;
-      wrap.classList.toggle('county-art',!isKingston);
-      document.getElementById('pinOverlay').hidden=!isKingston;
-    }
-
-    function renderFallback(){
-      const e=editions[currentEdition],ul=document.getElementById('fallbackList');ul.innerHTML='';
-      e.zones.forEach(z=>{const li=document.createElement('li');const a=document.createElement('a');a.target='_blank';a.rel='noopener';a.href=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(z.note+', New York')}`;a.textContent=`Open ${z.label} in maps`;li.appendChild(a);ul.appendChild(li)});
-    }
-
-    function updateMap(){
-      renderFallback(); if(!map||!markerGroup)return; const e=editions[currentEdition];
-      markerGroup.clearLayers();
-      e.zones.forEach((z,i)=>{
-        const icon=L.divIcon({className:'',html:`<div class="zone-marker"><span>${z.short}</span></div>`,iconSize:[38,38],iconAnchor:[19,35]});
-        const marker=L.marker([z.lat,z.lng],{icon}).addTo(markerGroup);
-        marker.bindPopup(`<strong>${z.label}</strong><br><span>${z.note}</span><br><small>Map-pin inventory available; final position follows the advertiser's verified address.</small>`);
-        marker.on('click',()=>{document.querySelectorAll('.zone-marker').forEach(m=>m.classList.remove('active')); const node=marker.getElement()?.querySelector('.zone-marker');if(node)node.classList.add('active')});
-      });
-      map.setView(e.center,e.zoom,{animate:false}); setTimeout(()=>map.invalidateSize(),80);
-    }
-
-    function setView(view){
-      currentView=view; document.querySelectorAll('.view-tab').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
-      document.getElementById('mapFrame').hidden=view!=='map'; document.getElementById('spreadView').classList.toggle('active',view==='spread'); document.getElementById('designView').classList.toggle('active',view==='design');
-      if(view==='map'&&map)setTimeout(()=>map.invalidateSize(),30);
-    }
-
     function renderCart(){
       const list=document.getElementById('cartList'); list.innerHTML='';
       [...selected.values()].forEach(s=>{
-        const li=document.createElement('li');li.innerHTML=`<div><strong>${editions[s.edition].name} · ${s.id} — ${s.name}</strong><span>${money(s.price)} planning rate</span></div>`;
-        const b=document.createElement('button');b.type='button';b.className='remove';b.textContent='×';b.setAttribute('aria-label',`Remove ${s.name}`);b.addEventListener('click',()=>{selected.delete(s.key);renderCart();renderSlots();renderPinSample();updateBasket();updateSlotHighlights()});li.appendChild(b);list.appendChild(li);
+        const li=document.createElement('li');
+        li.innerHTML=`<div><strong>${editions[s.edition].label} · ${s.id} — ${s.name}</strong><div>${money(s.price)} planning rate</div></div>`;
+        const b=document.createElement('button'); b.type='button'; b.className='remove'; b.textContent='×'; b.setAttribute('aria-label',`Remove ${s.name}`);
+        b.addEventListener('click',()=>{selected.delete(s.key);renderSlots();renderPins();renderCart();updateBasket()});
+        li.appendChild(b); list.appendChild(li);
       });
       document.getElementById('drawerTotal').textContent=money([...selected.values()].reduce((n,s)=>n+s.price,0));
     }
@@ -579,54 +430,47 @@
       const business=document.getElementById('businessName').value.trim()||'[Business name]';
       const name=document.getElementById('contactName').value.trim()||'[Contact name]';
       const email=document.getElementById('contactEmail').value.trim()||'[Email]';
-      const rows=[...selected.values()].map(s=>`- ${editions[s.edition].name} · ${s.id} — ${s.name}: ${money(s.price)}`).join('\n');
+      const rows=[...selected.values()].map(s=>`- ${editions[s.edition].label} · ${s.id} — ${s.name}: ${money(s.price)}`).join('\n');
       const total=[...selected.values()].reduce((n,s)=>n+s.price,0);
       return `Ulster Unfolded priority hold request\n\nBusiness: ${business}\nContact: ${name}\nEmail: ${email}\n\nRequested placements:\n${rows}\n\nPlanning total: ${money(total)}\n\nI understand this is a request, not a confirmed reservation or purchase. Please confirm availability, artwork requirements, and next steps.`;
     }
 
     function openDrawer(){renderCart();document.getElementById('drawer').classList.add('open');document.body.style.overflow='hidden';document.getElementById('closeDrawer').focus()}
     function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.body.style.overflow='';document.getElementById('reviewButton').focus()}
+    function openLightbox(){document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden'}
+    function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow=''}
 
-    document.querySelectorAll('.view-tab').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
-    document.querySelectorAll('.design-toggle button').forEach(b=>b.addEventListener('click',()=>{
-      document.querySelectorAll('.design-toggle button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-      const v=b.dataset.design; const img=document.getElementById('designImage');
-      img.src=v==='v4'?'assets/kingston-v4-latest.jpg':'assets/kingston-v1-latest.jpg';
-      img.alt=`Latest Kingston print map design, version ${v==='v4'?'4 After Dark':'1 First Light'}`;
+    document.querySelectorAll('.map-toggle button').forEach(b=>b.addEventListener('click',()=>setDesign(b.dataset.design)));
+    document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{
+      currentFilter=b.dataset.filter;
+      document.querySelectorAll('.filter').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+      renderSlots();
     }));
-    document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{currentFilter=b.dataset.filter;document.querySelectorAll('.filter').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderSlots()}));
-    document.querySelectorAll('[data-slot-link]').forEach(b=>b.addEventListener('click',()=>selectLinked(b.dataset.slotLink)));
-    document.querySelectorAll('[data-pin-link]').forEach(b=>b.addEventListener('click',()=>selectLinked(b.dataset.pinLink)));
     document.getElementById('reviewButton').addEventListener('click',openDrawer);
     document.getElementById('closeDrawer').addEventListener('click',closeDrawer);
     document.getElementById('drawer').addEventListener('click',e=>{if(e.target.id==='drawer')closeDrawer()});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('drawer').classList.contains('open'))closeDrawer()});
+    document.getElementById('artImage').addEventListener('click',openLightbox);
+    document.getElementById('lightboxClose').addEventListener('click',closeLightbox);
+    document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')closeLightbox()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeLightbox()}});
     function setStatus(msg){document.getElementById('status').textContent=msg}
-    function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}
+    const validEmail=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
     document.getElementById('emailRequest').addEventListener('click',()=>{
       if(!selected.size){setStatus('Select at least one placement first.');return}
       const contactEmail=document.getElementById('contactEmail').value.trim();
-      const mailLink=document.createElement('a');
-      mailLink.href=`mailto:${RESERVATION.email}?subject=${encodeURIComponent(RESERVATION.subject)}&body=${encodeURIComponent(requestText())}`;
-      mailLink.style.display='none'; document.body.appendChild(mailLink); mailLink.click(); mailLink.remove();
-      setStatus(contactEmail && !validEmail(contactEmail)
-        ? 'That email address looks incomplete — the draft opened anyway so you can fix it before sending.'
-        : 'Your mail app should open with the request ready to review.');
+      const link=document.createElement('a');
+      link.href=`mailto:${RESERVATION.email}?subject=${encodeURIComponent(RESERVATION.subject)}&body=${encodeURIComponent(requestText())}`;
+      document.body.appendChild(link); link.click(); link.remove();
+      setStatus(contactEmail&&!validEmail(contactEmail)?'Heads up: that email address looks incomplete — the draft opened anyway.':'Draft opened in your mail app. Review and send when ready.');
     });
     document.getElementById('copyRequest').addEventListener('click',async()=>{
       if(!selected.size){setStatus('Select at least one placement first.');return}
-      try{await navigator.clipboard.writeText(requestText());setStatus('Request copied.')}catch(e){setStatus('Copy was blocked. Use the email button instead.')}
+      try{await navigator.clipboard.writeText(requestText());setStatus('Request copied — paste it into an email to '+RESERVATION.email)}
+      catch{setStatus('Copy blocked by the browser — use the email button instead.')}
     });
 
-    function wireReservationConfig(){
-      const qa=document.getElementById('askQuestion');
-      if(qa) qa.href=`mailto:${RESERVATION.email}?subject=${encodeURIComponent(RESERVATION.questionSubject)}`;
-      const note=document.getElementById('mailNote');
-      if(note) note.textContent=`The email button opens a draft addressed to ${RESERVATION.email}. You still review and send it from your own mail app.`;
-    }
-
-    renderEditionNav(); setEdition('kingston'); setView('map'); updateBasket(); wireReservationConfig(); initMap();
+    renderEditionSelect(); setEdition('kingston'); setDesign('v4'); updateBasket();
   </script>
 </body>
 </html>
