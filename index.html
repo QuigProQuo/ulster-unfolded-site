@@ -91,7 +91,7 @@
     .fact strong{display:block;font:600 1.22rem/1 var(--serif);color:var(--river)}
     .fact span{display:block;margin-top:5px;color:var(--muted);font-size:.66rem}
 
-    .view-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+    .view-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
     .view-tab{min-height:46px;border:1px solid var(--line);background:transparent;font-weight:800;border-radius:2px}
     .view-tab[aria-pressed="true"]{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
     .workgrid{display:grid;gap:16px}
@@ -129,6 +129,13 @@
 
     .spread{display:none;padding:12px;background:var(--paper);color:#17201c;min-height:520px}
     .spread.active{display:block}
+    .design-view{display:none;padding:12px;background:var(--paper);color:#17201c}
+    .design-view.active{display:block}
+    .design-toggle{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+    .design-toggle button{min-height:44px;border:1px solid #17201c;background:transparent;font-weight:800;border-radius:2px;color:#17201c}
+    .design-toggle button[aria-pressed="true"]{background:#17201c;color:#f5ebdd}
+    .design-view img{width:100%;height:auto;display:block;border:1px solid #d8c9ae}
+    .design-note{font-size:.78rem;margin-top:8px;color:#4a524c}
     .spread-note{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:0 0 10px;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#59635d}
     .inside-sheet,.outside-sheet{display:grid;gap:7px}
     .sheet-panel{position:relative;min-height:128px;border:1px dashed #87948a;background:rgba(255,253,248,.7);padding:10px;display:flex;flex-direction:column}
@@ -271,6 +278,7 @@
         <div class="view-tabs" role="group" aria-label="Choose placement view">
           <button class="view-tab" type="button" data-view="map" aria-pressed="true">Street map</button>
           <button class="view-tab" type="button" data-view="spread" aria-pressed="false">Folded layout</button>
+          <button class="view-tab" type="button" data-view="design" aria-pressed="false">Print design</button>
         </div>
 
         <div class="workgrid">
@@ -314,6 +322,14 @@
                 <article class="sheet-panel"><h3>Local guide</h3><p>Short editorial routes, seasonal notes, and a QR path into the mobile map.</p><button class="paper-slot" type="button" data-slot-link="H1">H1 · half panel</button></article>
                 <article class="sheet-panel back-cover"><h3>Back cover</h3><p>The most visible single placement in the edition.</p><button type="button" data-slot-link="C1">C1 · reserve the back cover</button></article>
               </div>
+            </div>
+            <div class="design-view" id="designView">
+              <div class="design-toggle" role="group" aria-label="Choose print design version">
+                <button type="button" data-design="v4" aria-pressed="true">V4 · After Dark</button>
+                <button type="button" data-design="v1" aria-pressed="false">V1 · First Light</button>
+              </div>
+              <img id="designImage" src="assets/kingston-v4-latest.jpg" alt="Latest Kingston print map design, version 4 After Dark" />
+              <p class="design-note"><strong>Latest artwork.</strong> Numbered ad pins are concept positions; final pin placement follows each advertiser's verified address. Tap the image to zoom in your browser.</p>
             </div>
           </section>
 
@@ -546,7 +562,7 @@
 
     function setView(view){
       currentView=view; document.querySelectorAll('.view-tab').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
-      document.getElementById('mapFrame').hidden=view!=='map'; document.getElementById('spreadView').classList.toggle('active',view==='spread');
+      document.getElementById('mapFrame').hidden=view!=='map'; document.getElementById('spreadView').classList.toggle('active',view==='spread'); document.getElementById('designView').classList.toggle('active',view==='design');
       if(view==='map'&&map)setTimeout(()=>map.invalidateSize(),30);
     }
 
@@ -572,6 +588,12 @@
     function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.body.style.overflow='';document.getElementById('reviewButton').focus()}
 
     document.querySelectorAll('.view-tab').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+    document.querySelectorAll('.design-toggle button').forEach(b=>b.addEventListener('click',()=>{
+      document.querySelectorAll('.design-toggle button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+      const v=b.dataset.design; const img=document.getElementById('designImage');
+      img.src=v==='v4'?'assets/kingston-v4-latest.jpg':'assets/kingston-v1-latest.jpg';
+      img.alt=`Latest Kingston print map design, version ${v==='v4'?'4 After Dark':'1 First Light'}`;
+    }));
     document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{currentFilter=b.dataset.filter;document.querySelectorAll('.filter').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderSlots()}));
     document.querySelectorAll('[data-slot-link]').forEach(b=>b.addEventListener('click',()=>selectLinked(b.dataset.slotLink)));
     document.querySelectorAll('[data-pin-link]').forEach(b=>b.addEventListener('click',()=>selectLinked(b.dataset.pinLink)));
